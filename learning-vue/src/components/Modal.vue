@@ -1,0 +1,116 @@
+<template>
+    <div class="modal" tabindex="-1">
+        <div class="modal-dialog" :class="{'bg-purple':theme == 'example'}">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <slot name="header"/>
+                </div>
+                <div class="modal-body">
+                    <slot />
+                </div>
+                <div class="modal-footer">
+                    <slot name="footer"/>
+                    <button type="button" class="btn btn-secondary" @click="onCloseModal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+export default {
+    name: 'AppModal',
+    props:{
+        title:{
+            type: String,
+            required: true,
+        },
+        theme: {
+            type: String,
+            default: "example",
+            validator(val){
+                return ["example", "sales", "contact"].includes(val)
+            }
+        },
+        content:{
+            type: String,
+            default: ""
+        }
+    },
+    data(){
+      return {
+       
+      };
+    },
+    methods:{
+        onCloseModal(){
+            this.$emit("closeModal")
+        }
+    }
+  }
+
+</script>
+
+<style lang="css">
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    outline: 0;
+}
+
+
+.modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 0.3rem;
+    outline: 0;
+}
+
+.modal-header {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1rem;
+    border-bottom: 1px solid #dee2e6;
+    border-top-left-radius: calc(0.3rem - 1px);
+    border-top-right-radius: calc(0.3rem - 1px);
+}
+
+.modal-body {
+    position: relative;
+    flex: 1 1 auto;
+    padding: 1rem;
+}
+
+.modal-footer {
+    display: flex;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0.75rem;
+    border-top: 1px solid #dee2e6;
+    border-bottom-right-radius: calc(0.3rem - 1px);
+    border-bottom-left-radius: calc(0.3rem - 1px);
+}
+
+.modal-title {
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+
+
+
+</style>

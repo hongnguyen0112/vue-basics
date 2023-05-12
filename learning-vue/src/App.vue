@@ -1,26 +1,45 @@
 <template>
-  <h1>Hello from Vue CLI</h1>
-  <button @click="onClickEvent">Click Me</button>
-  <hello-world ref = "hello" msg="Hello from App"/>
   <header-component ref = "headerRef"/>
+  <button @click="toggleModal">Show Modal</button>
+  <base-modal 
+    v-if="isShowModal"
+    title="This is a title from app components" 
+    content="This is content modal"
+    theme = "test"
+    @closeModal="toggleModal"
+  >
+    <template v-slot:header>
+      <div>
+        <h2>Header from App</h2>
+      </div>
+    </template>
+    <template v-slot:footer>
+      <div>
+        <h5>Footer from App</h5>
+      </div>
+    </template>
+    <label for="">Name</label>
+    <input type="password">
+  </base-modal>
 </template>
 
 <script>
-  import HelloWorld from './components/HelloWorld.vue';
   import HeaderComponent from './components/Header.vue'
+  import AppModal from './components/Modal.vue'
   export default {
     name: 'App',
     components: {
-      HelloWorld,
-      HeaderComponent
+      HeaderComponent,
+      BaseModal: AppModal
     },
     data(){
-      return {};
+      return {
+        isShowModal: false
+      };
     },
     methods:{
-      onClickEvent(){
-        console.log(this.$refs.headerRef)
-        this.$refs.hello.onConsoleLogTesting();
+      toggleModal(){
+        this.isShowModal = !this.isShowModal
       }
     }
   }
