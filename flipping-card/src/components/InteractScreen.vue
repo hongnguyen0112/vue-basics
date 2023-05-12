@@ -3,10 +3,11 @@
         <p>Hello from Game Screen</p>
         <pokemon-card v-for="(card,index) in cardsContext" 
         :key="index" 
+        :ref="`card-${index}`"
         :imgUrl="`images/${card}.png`"
-        :cardVal="{index, value: card}"
+        :cardVal="{index: index, value: card}"
         @onFlip="checkRule($event)"
-        :ref="`card-${index}`"></pokemon-card>
+        />
     </div>
 </template>
 
@@ -42,14 +43,17 @@ export default{
             } else if (this.rules.length === 2 && this.rules[0].value !== this.rules[1].value){
                 console.log('Wrong')
                 //Close the cards
+                setTimeout(()=>{
+                    this.$refs[`card-${this.rules[0].index}`][0].onFlipCardBack()
+                    this.$refs[`card-${this.rules[1].index}`][0].onFlipCardBack()
 
-                //Reset rules
-                //this.rules = [];
+                    //Reset rules
+                    this.rules = [];
+                },800)
+                
             } else {
                 return false
             }
-
-            console.log(this.rules)
         }
     }
 }

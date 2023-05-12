@@ -33,6 +33,9 @@ export default{
         onToggleCard(){
             this.isFlipped = !this.isFlipped;
             if(this.isFlipped) this.$emit("onFlip", this.cardVal)
+        },
+        onFlipCardBack(){
+            this.isFlipped = false;
         }
     }
 }

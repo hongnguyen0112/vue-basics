@@ -2,7 +2,9 @@
   <main-screen v-if="gameScreen==='default'" @onStart="handleGameModeSelect($event)"></main-screen>
   <interact-screen v-if="gameScreen==='match'" :cardsContext="settings.cardsContext"></interact-screen>
   <!-- <result-screen></result-screen> -->
-  <coppy-right></coppy-right>
+  <teleport to='body'>
+    <coppy-right></coppy-right>
+  </teleport>
 </template>
 
 <script>
