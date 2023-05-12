@@ -1,0 +1,19 @@
+.card-container{
+    display: flex;
+}
+
+.card{
+    width: 120px;
+    height: 190px;
+    margin: 10px;
+    align-items: center;
+}
+
+.card .card-thumb{
+    width: 120px;
+    height: 90px;
+}
+
+.card.active{
+    background-color: antiquewhite;
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <section id="contact">
+      <h1>
+        Hello, {{data}} and {{isHello ? firstName + " " + lastName : " "}}
+      </h1>
+      <button @click="onToggleName">Toggle Name</button>
+      <div class="modal" v-if="showModal">
+        <h1>Modal Content</h1>
+      </div>
+      <button @click="onShowEvent">Show Event Handling</button>
+      <div v-if="showEventHandling">
+        <h2>Event Handling</h2>
+        <div class="card-container">
+          <div class="card" @mouseover="onMouseEvent">Mouse Over</div>
+          <div class="card" @mouseleave="onMouseEvent">Mouse Click</div>
+          <div class="card" @dblclick="onMouseEvent($event, 50,50)">
+            Double Click
+          </div>
+          <div class="card" @mousemove="onMouseMove">
+            Mouse Move: {{`${x} ${y}`}}
+          </div>
+        </div>
+      </div>
+      <div>
+        <h2>Products</h1>
+        <div class="product card-container">
+            <div class="card" v-for="item in products" :class="{active: item.active}" @dblclick="onCartClick($e,item)">
+                <img class="card-thumb" v-bind:src=item.image>
+                <h3>{{item.name}}</h3>
+                <p>{{item.price}}</p>
+            </div>
+        </div>
+        {{productsComputed}}
+      </div>
+    </section>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
