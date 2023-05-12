@@ -1,6 +1,6 @@
 <template>
-    <div class="modal" tabindex="-1">
-        <div class="modal-dialog" :class="{'bg-purple':theme == 'example'}">
+    <div class="modal" tabindex="-1" @click="onCloseModal">
+        <div class="modal-dialog" :class="{'bg-purple':theme == 'example'}" >
             <div class="modal-content">
                 <div class="modal-header">
                     <slot name="header"/>
@@ -10,7 +10,6 @@
                 </div>
                 <div class="modal-footer">
                     <slot name="footer"/>
-                    <button type="button" class="btn btn-secondary" @click="onCloseModal">Close</button>
                 </div>
             </div>
         </div>
