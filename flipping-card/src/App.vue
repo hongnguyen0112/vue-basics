@@ -41,6 +41,7 @@ export default {
       const initCards = Array.from({length: this.settings.totalBlocks/2},(_,i)=>i+1)
       const secondCardsArr = [...initCards];
       const cards = [...initCards, ...secondCardsArr];
+      
       //random the position of cards
       this.settings.cardsContext = shuffle(shuffle(cards))
       

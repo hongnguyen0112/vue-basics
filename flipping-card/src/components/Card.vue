@@ -71,7 +71,7 @@ export default{
     backface-visibility: hidden;
     overflow: hidden;
     border-radius: 1rem;
-    padding: 1rem;
+    /* padding: 1rem; */
     box-shadow: 0 3px 10px 3px rgba(0, 0, 0, 0.2);
 }
 
