@@ -21,7 +21,7 @@
 
 <script>
 
-import { ref } from 'vue';
+import useTransactions from "../hooks/fetchTransactions"
 
 export default{
     name:'TransactionsPage',
@@ -39,26 +39,12 @@ export default{
     // },
 
     setup(){
-        let transactions = ref([]);
-        const error = ref(null);
-        const fetchData = async () => {
-            try {
-                const response = await fetch("http://localhost:3000/transactions")
-                if(response.ok){
-                    transactions.value = await response.json()
-                }
-                else{
-                    throw new Error("Something went wrong")
-                }
-            }
-            catch(err) {
-                error.value = err;
-                console.log(error.value)
-            }
+        const { transactions, error, fetchData } = useTransactions();
 
-        }
         fetchData();
-        return {transactions}
+
+        return {transactions, error}
+        
     }
 }
 </script>
